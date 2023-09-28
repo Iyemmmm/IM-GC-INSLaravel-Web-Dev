@@ -1,5 +1,7 @@
 <?php
-require ('animal.php');
+require_once('animal.php');
+require_once('frog.php');
+require_once('ape.php');
 
 $sheep = new Animal("Shaun");
 echo "Name: " . $sheep->getName() . "<br>"; // "Shaun"
@@ -21,3 +23,4 @@ echo "Legs: " . $sungokong->getLegs() . "<br>"; // 2
 echo "Cold blooded: " . $sungokong->getColdBlooded() . "<br>";
 echo "Yell: ";
 $sungokong->yell(); // "Auooo"
+?>

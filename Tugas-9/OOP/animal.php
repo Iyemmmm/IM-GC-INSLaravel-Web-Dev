@@ -22,18 +22,4 @@ class Animal {
         return $this->cold_blooded;
     }
 }
-class Frog extends Animal {
-    public function jump() {
-        echo "hop hop<br>";
-    }
-}
-class Ape extends Animal {
-    public function __construct($name) {
-        parent::__construct($name);
-        $this->legs = 2;
-    }
-
-    public function yell() {
-        echo "Auooo<br>";
-    }
-}
+?>
