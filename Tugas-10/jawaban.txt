@@ -1,0 +1,61 @@
+1. Membuat database
+
+source code:CREATE DATABASE `myshop`
+
+2. Membuat Tabel di dalam database
+
+source code:
+CREATE TABLE `users` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`Name` VARCHAR(255) NULL DEFAULT NULL COLLATE,
+	`Email` VARCHAR(255) NULL DEFAULT NULL COLLATE,
+	`password` VARCHAR(255) NULL DEFAULT NULL COLLATE,
+	PRIMARY KEY (`id`)
+)
+CREATE TABLE `categories` (
+	`ID` INT(11) NOT NULL AUTO_INCREMENT,
+	`Name` VARCHAR(255) NULL DEFAULT NULL COLLATE,
+	PRIMARY KEY (`ID`)
+)
+CREATE TABLE `items` (
+	`ID` INT(11) NOT NULL AUTO_INCREMENT,
+	`Name` VARCHAR(255) NULL DEFAULT NULL COLLATE,
+	`Description` VARCHAR(255) NULL DEFAULT NULL COLLATE,
+	`Price` INT(11) NULL DEFAULT NULL,
+	`Stock` INT(11) NULL DEFAULT NULL,
+	`Category_ID` INT(11) NULL DEFAULT NULL,
+	PRIMARY KEY (`ID`),
+	CONSTRAINT `FK_items_categories` FOREIGN KEY (`Category_ID`) REFERENCES `categories` (`ID`) ON UPDATE CASCADE ON DELETE CASCADE
+)
+
+3. Memasukkan data pada tabel
+
+source code:
+INSERT INTO `users` (`name`,`email`) VALUES ('John Doe','john@doe.com'),('Jane Doe','jane@doe.com');
+INSERT INTO `categories` (`Name`) VALUES ('Gadget'),('Cloth'),('Men'),('Women'),('Branded');
+INSERT INTO `items` (`name`,`description`) VALUES ('Sumsang b50','hape keren dari merek sumsang'),('Uniklooh','baju keren dari brand ternama'),('IMHO Watch','jam tangan anak yang jujur banget');
+
+4. Mengambil data dari database
+	a. Mengambil data users kecuali passwordnya
+	Source code:SELECT id,Name,Email FROM `users`
+	
+	b. Mengambil data items
+	-memiliki harga di atas 1000000
+	source code:SELECT * FROM `items` WHERE price>1000000;
+	
+	-memiliki nama serupa dengan kata kunci "uniko"
+	source code:SELECT * FROM `items` WHERE Name LIKE '%uniklo%';
+	
+	c.Mengambil data item join dengan kategori
+	source code: 
+	SELECT items.Name,Description FROM `items`
+	LEFT JOIN categories ON categories.ID=items.ID;
+
+5. Mengubah data pada tabel
+mengubah harga sumsang b50 menjadi 2500000
+
+source code: 
+UPDATE `items` SET price= 2500000
+WHERE NAME='Sumsang b50';
+
+
